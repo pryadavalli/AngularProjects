@@ -14,13 +14,14 @@
         <br/>
       </div>
     <div class="col-md-5">
-        <input type="button" value="Login" >
+        <input type="button" value="Login" (click)="Login($event)" >
     </div>
 
-    <!-- <h3 class="text-special" > Please enter valid username and password</h3> -->
-    
-    <!-- <h3 [class.text-danger]="hasError"> Please enter valid username and password</h3> -->
-
-    <h3 [ngClass]="messageClasses" > Any Error ? {{hasError}}</h3>
-
+      
+    <h3 *ngIf="hasError;else elseBlock"  [ngClass]="messageClasses" > Any Error ? {{hasError}}</h3>
+    <ng-template #elseBlock>
+        <h3>
+            {{greeting}}
+        </h3>
+    </ng-template>
 </div>
