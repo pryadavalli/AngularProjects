@@ -1,6 +1,6 @@
  
 <div class="col-md-6 col-md-offset-3">
-    <h2>Login</h2>
+    <h2 [style.color] = "'orange'">Login</h2>
     <div class="col-md-5">
         Username: <input type="text" [(ngModel)]= "loginname">     
     </div>
@@ -16,5 +16,11 @@
     <div class="col-md-5">
         <input type="button" value="Login" >
     </div>
+
+    <!-- <h3 class="text-special" > Please enter valid username and password</h3> -->
+    
+    <!-- <h3 [class.text-danger]="hasError"> Please enter valid username and password</h3> -->
+
+    <h3 [ngClass]="messageClasses" > Any Error ? {{hasError}}</h3>
 
 </div>
