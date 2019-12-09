@@ -17,8 +17,14 @@
         <input type="button" value="Login" (click)="Login($event)" >
     </div>
 
-      
-    <h3 *ngIf="hasError;else elseBlock"  [ngClass]="messageClasses" > Any Error ? {{hasError}}</h3>
+ 
+    <h3 *ngIf="hasError;then thenBlock;else elseBlock"   ></h3>
+    <ng-template #thenBlock>
+        <h3 >
+            Error? {{hasError}}
+        </h3>
+    </ng-template>
+
     <ng-template #elseBlock>
         <h3>
             {{greeting}}
