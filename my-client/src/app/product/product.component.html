@@ -1,10 +1,11 @@
+<a routerLink= "/home" routerLinkActive = "active">Home</a>
 <p>List of products</p>
 
-<ol>
+<ul class="items col-md-3">
     <li (click)='getDetails(product)' *ngFor="let product of products">
-        <a>{{product.name}}</a>
+       <span class="badge"> {{product.id}}</span> <span class="badge">{{product.name}}  </span> 
     </li>
-</ol>
+</ul>
 
-<a routerLink= "/home" routerLinkActive = "active">Home</a>
+
 

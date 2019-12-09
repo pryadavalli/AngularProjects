@@ -18,11 +18,8 @@ export class ProductComponent implements OnInit {
     this.products.push({'id':4, 'name':'iphonex6'});  
     this.products.push({'id':5, 'name':'iphonex7'});
   }
-
   getDetails(product)
   {
     this.router.navigate(['/products', product.id]);
   }
-  
-
 }

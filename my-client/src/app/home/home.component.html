@@ -1,9 +1,14 @@
+<div class="row col-offset-7">
+        <a routerLink= "/" routerLinkActive = "active">Logout</a>
+</div>
 <p>Welcome to Home Page</p>
 <div class="row">
     <div class="col-md-3">
-            <a routerLink= "/products" routerLinkActive = "active">Products</a>
-    </div>
-    <div class="col-md-3">
-            <a routerLink= "/" routerLinkActive = "active">Logout</a>
+            <a routerLink= "/products" routerLinkActive = "active">Show Products</a>
     </div>
 </div>
+
+<div class="container">
+                <router-outlet></router-outlet>
+ </div>
+            
