@@ -1,6 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
 import {Router} from '@angular/router';
+import { Store, select } from '@ngrx/store';
+import * as fromRoot from '../login/state/login.reducer';
+import * as loginActions from '../login/state/login.actions';
+
+export interface LoginStateLocal{
+  username: string;
+  password: string;
+}
+const intitalState : LoginStateLocal = {
+  username: '',
+  password: ''
+};
 
 @Component({
   selector: 'app-login',
@@ -10,20 +22,29 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   public hasError = false;
   public greeting ="";
-  public  loginname;
-  public password;
+  public  loginState = intitalState;
   public messageClasses ={
     "text-success":!this.hasError,
     "text-danger":  this.hasError,
     "text-special": this.hasError
   }
-   constructor(private router:Router) { }
+   constructor(private store: Store<fromRoot.State>,private router:Router) { }
   ngOnInit() {
-    this.loginname ='test';
-    this.password='test';
+    this.loginState.username = 'test';
+    this.loginState.password = 'test';
+
+
   }
-  Login(event)
+  login(formValues)
   {
+ 
+  console.log(formValues);
+  
+    this.store.dispatch(
+      new loginActions.LoginAction(this.loginState)
+    );
+
+    /*
     if(this.loginname == "test" && this.password == "test")
     {
       this.greeting = "Welcome to angular world!";
@@ -35,5 +56,8 @@ export class LoginComponent implements OnInit {
       this.hasError = true;
       console.log(this.messageClasses);
     }
+    */
+
+
   }
 }
