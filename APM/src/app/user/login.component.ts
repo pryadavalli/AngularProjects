@@ -46,12 +46,18 @@ export class LoginComponent implements OnInit {
 
   login(loginForm: NgForm): void {
     if (loginForm && loginForm.valid) {
-      const userName = loginForm.form.value.userName;
-      const password = loginForm.form.value.password;
-
       this.store.dispatch(new userActions.LoginUser(loginForm.form.value))
-      
+      var temp =  this.store.pipe(select(fromUser.getUserLoginState));
+       temp.subscribe((data: boolean) => 
+        {
+            this.isValidLogin = data;
+        });
 
+        if(this.isValidLogin)
+        {
+          console.log("Login success");
+          this.router.navigate(['/products']);
+        }
      /* this.authService.login(loginForm.form.value);
       if (this.authService.redirectUrl) {
         this.router.navigateByUrl(this.authService.redirectUrl);

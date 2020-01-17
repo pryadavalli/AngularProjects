@@ -23,7 +23,6 @@ export class UserEffects {
             map(res => (new userActions.LoginSuccess(true))),
             catchError(err => of(new userActions.LoginFail(false)))
         )
-        
     )
     )
 }
