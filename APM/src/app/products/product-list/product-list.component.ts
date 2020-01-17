@@ -47,18 +47,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
     this.errorMessage$ = this.store.pipe(select(fromProduct.getError));
 
-    // this.productService.getProducts().subscribe({
-    //   next: (products: Product[]) => this.products = products,
-    //   error: (err: any) => this.errorMessage = err.error
-    // });
-
-    //** below one is without selector implementation */
-    // this.store.pipe(select('products')).subscribe(
-    //   products=> {
-    //     if(products)
-    //       this.displayCode = products.showProductCode
-    //   }
-    // )
+     
 
     // * Below code is with selector implementation in the reducer
     this.store.pipe(select(fromProduct.getShowProductCode)).subscribe(

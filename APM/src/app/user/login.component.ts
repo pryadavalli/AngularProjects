@@ -3,6 +3,12 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthService } from './auth.service';
+import { Store, select } from '@ngrx/store';
+
+import * as fromUser from '../user/state/user.reducer';
+import * as userActions from '../user/state/user.actions';
+
+import {User} from '../user/user';
 
 @Component({
   templateUrl: './login.component.html',
@@ -11,15 +17,21 @@ import { AuthService } from './auth.service';
 export class LoginComponent implements OnInit {
   pageTitle = 'Log In';
   errorMessage: string;
-
   maskUserName: boolean;
+  isValidLogin:boolean;
 
   constructor(private authService: AuthService,
-              private router: Router) {
+              private router: Router,
+              private store: Store<fromUser.UserState>) {
   }
-
   ngOnInit(): void {
+    this.store.pipe(select(fromUser.getUserState)).subscribe(
+      markUser => this.maskUserName = markUser
+    )
 
+    this.store.pipe(select(fromUser.getUserLoginState)).subscribe(
+      isvalidlogin => this.isValidLogin = isvalidlogin
+    )
   }
 
   cancel(): void {
@@ -27,15 +39,20 @@ export class LoginComponent implements OnInit {
   }
 
   checkChanged(value: boolean): void {
-    this.maskUserName = value;
+    this.store.dispatch(
+      new userActions.ToggleMarkUserName(value)
+    )
   }
 
   login(loginForm: NgForm): void {
     if (loginForm && loginForm.valid) {
       const userName = loginForm.form.value.userName;
       const password = loginForm.form.value.password;
-      this.authService.login(userName, password);
 
+      this.store.dispatch(new userActions.LoginUser(loginForm.form.value))
+      
+
+     /* this.authService.login(loginForm.form.value);
       if (this.authService.redirectUrl) {
         this.router.navigateByUrl(this.authService.redirectUrl);
       } else {
@@ -44,5 +61,7 @@ export class LoginComponent implements OnInit {
     } else {
       this.errorMessage = 'Please enter a user name and password.';
     }
+    */
   }
+}
 }

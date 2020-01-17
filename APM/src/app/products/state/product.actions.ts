@@ -57,8 +57,15 @@ export class UpdateProductFail  implements Action{
 }
 
 
-export type ProductActions = ToggleProductCode|SetCurrentProduct|ClearCurrentProduct|InitializeCurrentProduct|
-                            Load |LoadSuccess|LoadFail
-                            |UpdateProduct|UpdateProductFail|UpdateProductSuccess
-                            ;
+export type ProductActions = ToggleProductCode|
+SetCurrentProduct|
+ClearCurrentProduct|
+InitializeCurrentProduct|
+Load |
+LoadSuccess|
+LoadFail|
+UpdateProduct|
+UpdateProductFail|
+UpdateProductSuccess
+;
                                 

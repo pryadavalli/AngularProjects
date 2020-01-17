@@ -1,8 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
- 
-
 import { Product } from '../product';
 import { ProductService } from '../product.service';
 import { GenericValidator } from '../../shared/generic-validator';
@@ -20,9 +17,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
   pageTitle = 'Product Edit';
   errorMessage = '';
   productForm: FormGroup;
-
   product: Product | null;
-   
 
   // Use with the generic validation message class
   displayMessage: { [key: string]: string } = {};
